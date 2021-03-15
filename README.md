@@ -37,6 +37,7 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 | `node_exporter_tls_server_config` | {} | Configuration for TLS authentication. Keys and values are the same as in [node_exporter docs](https://github.com/prometheus/node_exporter/blob/master/https/README.md#sample-config). |
 | `node_exporter_http_server_config` | {} | Config for HTTP/2 support. Keys and values are the same as in [node_exporter docs](https://github.com/prometheus/node_exporter/blob/master/https/README.md#sample-config). |
 | `node_exporter_basic_auth_users` | {} | Dictionary of users and password for basic authentication. Passwords are automatically hashed with bcrypt. |
+| `node_exporter_system_group_members` | [] | List of users to add to the node-exporter group (allows writing to node_exporter_textfile_dir). Users added outside of this role will not be removed from the group. |
 
 ## Example
 
@@ -75,7 +76,10 @@ Before running node_exporter role, the user needs to provision their own certifi
       cert_file: /etc/node_exporter/tls.cert
       key_file: /etc/node_exporter/tls.key
     node_exporter_basic_auth_users:
-      randomuser: examplepassword 
+      randomuser: examplepassword
+    node_exporter_system_group_members:
+      - backup_user
+      - batch_job_user
 ```
 
 

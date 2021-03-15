@@ -36,3 +36,13 @@
     - not ansible_check_mode
   tags:
     - node_exporter_run
+
+- name: Add user to node-exporter group
+  become: true
+  user:
+    name: "{{ item }}"
+    groups: "{{ _node_exporter_system_group }}"
+    append: true
+  loop: "{{ node_exporter_system_group_members }}"
+  when:
+    - not ansible_check_mode

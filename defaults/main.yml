@@ -26,3 +26,7 @@ node_exporter_disabled_collectors: []
 _node_exporter_binary_install_dir: "/usr/local/bin"
 _node_exporter_system_group: "node-exp"
 _node_exporter_system_user: "{{ _node_exporter_system_group }}"
+
+# Adds users to the node-exporter group (allows writing to node_exporter_textfile_dir)
+# Users added outside of this role will not be removed from the group!
+node_exporter_system_group_members: []
